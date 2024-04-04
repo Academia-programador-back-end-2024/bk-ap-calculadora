@@ -1,12 +1,9 @@
-﻿//Requisito 01 
-//Nossa calculadora deve ter a possibilidade de somar dois números
-
-decimal primeiroNumerador;//camelCase
-decimal segundoNumerador;// decimal
-
+﻿decimal primeiroNumerador;
+decimal segundoNumerador;
 decimal ResultadoOperacao = 0;
 
-string saida = "exit";
+const string saida = "exit";
+
 string operacao = "";
 
 while (operacao != saida)
@@ -14,22 +11,24 @@ while (operacao != saida)
     Console.Clear();
 
     Console.WriteLine("Para fazer uma soma digite 1");
-    Console.WriteLine("Para fazer uma subtracao digite 2");
+    Console.WriteLine("Para fazer uma subtração digite 2");
     Console.WriteLine("Para fazer uma multiplicação digite 3");
     Console.WriteLine("Para fazer uma divisão digite 4");
     Console.WriteLine("Para sair, digite 'exit'");
 
     operacao = Console.ReadLine();
 
-    if( operacao == saida)
+    if (operacao == saida)
     {
-        //Faz sair do laço de repetição
         break;
     }
 
-    if(Convert.ToInt16(operacao) > 4) // >= != < <= // || ou &&
+    // Validar se a entrada do usuário é um número de 1 a 4
+    if (!ValidarOpcaoMenu(operacao))
     {
-        Console.WriteLine("Nao reconheço essa operacao");
+        Console.WriteLine("Opção inválida. Por favor, escolha uma opção de 1 a 4.");
+        Console.WriteLine("Pressione qualquer tecla para continuar...");
+        Console.ReadKey();
         continue;
     }
 
@@ -50,23 +49,35 @@ while (operacao != saida)
             ResultadoOperacao = primeiroNumerador * segundoNumerador;
             break;
         case "4"://Divisão
+                 // Verificar se o segundo número é zero para evitar divisão por zero
+            if (segundoNumerador == 0)
+            {
+                Console.WriteLine("Não é possível dividir por zero.");
+                continue;
+            }
             ResultadoOperacao = primeiroNumerador / segundoNumerador;
             break;
         default:
-            Console.WriteLine("Nao reconheço essa operacao");
+            Console.WriteLine("Não reconheço essa operação");
             break;
     }
-    Console.WriteLine("Resultado da operação escolhida é de :" + ResultadoOperacao);
+    Console.WriteLine("Resultado da operação escolhida é de : " + ResultadoOperacao);
 
-};
+    Console.WriteLine("Pressione qualquer tecla para continuar...");
+    Console.ReadKey();
+}
 
 
-//Requisito 02 
-//Nossa calculadora deve ter a possibilidade de fazer várias operações de soma
-//Requisito 03 
-//Nossa calculadora deve ter a possibilidade fazer várias operações de soma e de subtração
-//Requisito 04 
-//Nossa calculadora deve ter a possibilidade fazer as quatro operações básicas da matemática
-//07 Nossa calculadora deve realizar as operações com números com duas casas decimais
-
-//Nossa calculadora deve validar a opções do menu 
+// Função para validar se a entrada do usuário é um número de 1 a 4
+static bool ValidarOpcaoMenu(string opcao)
+{
+    int numero;
+    if (int.TryParse(opcao, out numero))
+    {
+        if (numero >= 1 && numero <= 4)
+        {
+            return true;
+        }
+    }
+    return false;
+}
