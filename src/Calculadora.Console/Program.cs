@@ -6,6 +6,7 @@ const string saida = "exit";
 
 string operacao = "";
 
+
 while (operacao != saida)
 {
     Console.Clear();
@@ -32,11 +33,10 @@ while (operacao != saida)
         continue;
     }
 
-    Console.WriteLine("Digite o primeiro valor:");
-    primeiroNumerador = Convert.ToDecimal(Console.ReadLine());
 
-    Console.WriteLine("Digite o segundo valor:");
-    segundoNumerador = Convert.ToDecimal(Console.ReadLine());
+    primeiroNumerador = LerValor();
+    segundoNumerador = LerValor();
+
     switch (operacao)
     {
         case "1"://Somar
@@ -80,4 +80,11 @@ static bool ValidarOpcaoMenu(string opcao)
         }
     }
     return false;
+}
+
+static decimal LerValor()
+{
+    Console.WriteLine("Digite um valor:");
+    var valor = Convert.ToDecimal(Console.ReadLine());
+    return valor;
 }
