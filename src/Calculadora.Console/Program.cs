@@ -6,7 +6,7 @@ string operacao = string.Empty;
 
 while (operacao != saida)//Laço de repetição
 {
-    MenuDeOpcoes(operacao);//Função para verificar as opções
+    MenuDeOpcoes(ref operacao);//Função para verificar as opções
 
     if (!ValidarOpcaoMenu(operacao))//Verificar se a opção é valida
     {
@@ -30,12 +30,11 @@ while (operacao != saida)//Laço de repetição
     ImprimirResultado(ResultadoOperacao);
 }
 
-
-static void MenuDeOpcoes(string operacao)
+static void MenuDeOpcoes(ref string operacao)
 {
     Console.Clear();//Limpar a tela
     Console.WriteLine(@"
-            Para fazer uma soma digite 1\r\n
+            Para fazer uma soma digite 1 \r\n
             Para fazer uma subtração digite 2\r\n
             Para fazer uma multiplicação digite 3\r\n
             Para fazer uma divisão digite 4\r\n\r\n
@@ -80,7 +79,7 @@ static decimal VerificarZero(decimal segundoNumerador)
             Console.WriteLine("Não é possível dividir por zero. Escolha outro!");
             segundoNumerador = LerValor();
         }
-    } while (segundoNumerador > 0);
+    } while (segundoNumerador == 0);
     return segundoNumerador;
 }
 
@@ -118,3 +117,5 @@ static void ImprimirResultado(decimal ResultadoOperacao)
     Console.WriteLine("Pressione qualquer tecla para continuar...");
     Console.ReadKey();
 }
+
+//KISS Keep it simple stupid
