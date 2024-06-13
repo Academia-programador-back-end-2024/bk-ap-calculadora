@@ -89,7 +89,7 @@ public class Calculadora
                 ResultadoOperacao = primeiroNumerador * SegundoNumerador;
                 break;
             case "4"://Divisão                 
-                VerificarZero(SegundoNumerador);
+                //VerificarZero(SegundoNumerador);
                 ResultadoOperacao = PrimeiroNumerador / SegundoNumerador;
                 break;
             default:
